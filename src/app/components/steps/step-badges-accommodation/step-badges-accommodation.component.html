@@ -1,0 +1,23 @@
+<app-step-container [mainForm]="mainForm" [step]="step" [bgcolor]="stepBackgroundColor">
+  <div [formGroup]="step">
+    <p>
+      Would you like your company name on your badges?
+    </p>
+    <input type="radio" value="yes" formControlName="nameOnBadges" (change)="onChangeBadges($event.target.value)"> Yes
+    <input type="radio" value="no" formControlName="nameOnBadges" (change)="onChangeBadges($event.target.value)"> No
+
+    <ng-container *ngIf="isCompanyNameRequired()">
+      <p>
+        Company name: <input type="text" formControlName="companyName">
+      </p>
+    </ng-container>
+
+    <p>
+      Will anyone in your group require special accommodation?
+    </p>
+    <input type="radio" value="yes" formControlName="specialAccommodation"> Yes
+    <input type="radio" value="no" formControlName="specialAccommodation"> No
+    <ng-content></ng-content>
+  </div>
+
+</app-step-container>

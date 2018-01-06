@@ -1,0 +1,21 @@
+<app-step-container [mainForm]="mainForm" [step]="step" [bgcolor]="stepBackgroundColor">
+  <div [formGroup]="step">
+
+    <p>How many people will be attending?<br>
+      <select (change)="showAttendeesList($event.target.value)">
+        <option value="0">Please choose</option>
+        <option *ngFor="let val of optionsList" value="{{val}}">{{val}}</option>
+      </select>
+    </p>
+    <div *ngIf="attendeesList.controls.length > 0" formArrayName="attendees">
+      <strong>Please, provide full names:</strong><br>
+      <ul>
+        <li *ngFor="let attendee of attendeesList.controls, let i = index">
+          Attendee {{i + 1}} Name: <input type="text" [formControlName]="i">
+        </li>
+      </ul>
+    </div>
+
+    <ng-content></ng-content>
+  </div>
+</app-step-container>

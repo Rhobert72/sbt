@@ -1,0 +1,24 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 400px;
+    grid-gap: 20px;
+    color: #444;
+    background-color: #444;;
+}
+
+.box {
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+}
+
+.title {
+    color: #fff;
+    font-size: 40px;
+}
+
+.form-output {
+    font-color: #fff!important;
+    font-size: 100%;
+}

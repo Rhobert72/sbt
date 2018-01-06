@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 40px;
+    font-size: 75%;
+    background-color: #444;
+}
+
+legend {
+    background-color: #fff;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 3px;
+}
+
+ul {
+    list-style-type: none;
+}

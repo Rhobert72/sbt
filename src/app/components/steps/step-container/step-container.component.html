@@ -1,0 +1,13 @@
+<fieldset [disabled]="isDisabled()" [ngStyle]="stepStyle">
+
+  <legend>
+    <strong>Step {{stepIndex + 1}}</strong>
+  </legend>
+
+  <ng-content></ng-content>
+
+  <ng-container *ngIf="!isLastStep()">
+    <app-alert-valid-step [stepStatus]="isFormValid()"></app-alert-valid-step>
+  </ng-container>
+
+</fieldset>
