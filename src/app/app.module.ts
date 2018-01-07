@@ -4,11 +4,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import {
-  StepRockComponent,
+    StepRockComponent,
     StepBadgesAccommodationComponent,
     StepAttendeesComponent,
     StepContainerComponent,
-    AlertValidStepComponent } from './components/';
+    AlertValidStepComponent } from './components';
 
 const components = [
     StepRockComponent,
@@ -21,11 +21,11 @@ const components = [
 @NgModule({
   declarations: [
     AppComponent,
-      ...components
+    ...components
   ],
   imports: [
     BrowserModule,
-      ReactiveFormsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
