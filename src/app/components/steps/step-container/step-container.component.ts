@@ -44,7 +44,7 @@ export class StepContainerComponent implements OnInit {
     }
 
     isLastStep(){
-        return this.stepIndex === this.getSteps().length -1;
+        return this.stepIndex === this.getSteps().length - 1;
     }
 
 }

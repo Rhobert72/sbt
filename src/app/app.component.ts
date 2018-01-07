@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from "@angular/core";
-import {FormBuilder, FormArray } from '@angular/forms';
+import {FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +13,12 @@ export class AppComponent {
         steps: this._fb.array([])
     });
 
-  public resetForm = 0;
-
   constructor(private _fb: FormBuilder) {}
 
   onSubmit(){
 
     console.log('FORM SUBMITTED:',this.mainForm.value);
     this.mainForm.reset();
-    this.resetForm++;
 
   }
 

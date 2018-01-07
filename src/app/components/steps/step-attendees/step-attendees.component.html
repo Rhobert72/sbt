@@ -2,13 +2,13 @@
   <div [formGroup]="step">
 
     <p>How many people will be attending?<br>
-      <select #selectNumAttendees (change)="showAttendeesList($event.target.value)">
-        <option value="0">Please choose</option>
+      <select (change)="showAttendeesList($event.target.value)" formControlName="numOfAttendees">
+        <option [ngValue]="null">Please choose</option>
         <option *ngFor="let val of optionsList" value="{{val}}">{{val}}</option>
       </select>
     </p>
 
-    <div *ngIf="step.controls.attendees.length > 0 && selectNumAttendees.value > 0" formArrayName="attendees">
+    <div *ngIf="step.controls.numOfAttendees.value > 0" formArrayName="attendees">
       <strong>Please, provide full names:</strong><br>
       <ul>
         <li *ngFor="let attendee of step.controls.attendees.controls, let i = index">

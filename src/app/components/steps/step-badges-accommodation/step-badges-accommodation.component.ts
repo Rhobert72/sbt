@@ -6,7 +6,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: './step-badges-accommodation.component.html',
   styleUrls: ['./step-badges-accommodation.component.css']
 })
-export class StepBadgesAccommodationComponent implements OnInit {
+export class StepBadgesAccommodationComponent {
 
     @Input() mainForm: FormGroup;
 
@@ -18,8 +18,6 @@ export class StepBadgesAccommodationComponent implements OnInit {
     public stepBackgroundColor = '#b6e4fb';
 
     constructor(private _fb: FormBuilder) {}
-
-    ngOnInit() {}
 
     onChangeBadges(flag){
         if(flag === 'yes'){

@@ -10,22 +10,10 @@ export class StepAttendeesComponent implements OnInit {
 
     @Input() mainForm: FormGroup;
 
-    private _reset: number;
-    @Input()
-    set reset(reset: number) {
-        this._reset = reset;
-        this.resetSelectAttendees();
-    }
-
-    get reset(): number {
-        return this._reset;
-    }
-
     public step = this._fb.group({
+        numOfAttendees: new FormControl(null, Validators.min(1)),
         attendees: this._fb.array([], minLengthArray(1))
     });
-
-    @ViewChild('selectNumAttendees') selectNumAttendees: ElementRef;
 
     public stepBackgroundColor = "#c2fdbc";
 
@@ -52,10 +40,6 @@ export class StepAttendeesComponent implements OnInit {
         for(let i = 0; i < numOfAttendees; i++){
             attendees.push(new FormControl('', Validators.required));
         }
-    }
-
-    resetSelectAttendees(){
-        this.selectNumAttendees.nativeElement.value = 0;
     }
 
 }

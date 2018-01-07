@@ -3,7 +3,7 @@
   <div class="wrapper">
 
     <div class="box">
-      <app-step-attendees [mainForm]="mainForm" [reset]="resetForm"></app-step-attendees>
+      <app-step-attendees [mainForm]="mainForm"></app-step-attendees>
     </div>
 
     <div class="box">
@@ -19,9 +19,5 @@
   </div>
 </form>
 
-<p>
-  <span class="form-output">
-    Form value: {{ mainForm.value | json }}
-  </span>
-</p>
-<p [style.font-color]="'#fff'">Form status: {{ mainForm.status | json }}</p>
+<p>Form value: {{ mainForm.value | json }}</p>
+<p>Form status: {{ mainForm.status | json }}</p>
