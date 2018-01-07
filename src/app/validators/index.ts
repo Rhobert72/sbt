@@ -1,0 +1,1 @@
+export {minLengthArray} from './minLengthArray.validator';

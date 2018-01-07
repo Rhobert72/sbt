@@ -1,6 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-
+import {minLengthArray} from '../../../validators/'
 @Component({
     selector: "app-step-attendees",
     templateUrl: "./step-attendees.component.html",
@@ -14,14 +14,7 @@ export class StepAttendeesComponent implements OnInit {
     @Input()
     set reset(reset: number) {
         this._reset = reset;
-        if (this._reset > 0) {
-            /*const a = <FormArray>this.step.controls.attendees;
-                for(let i = 0; i < a.length; i++){
-                    a.removeAt(i);
-                }*/
-            this.resetAttendeesList();
-            this.resetSelectAttendees();
-        }
+        this.resetSelectAttendees();
     }
 
     get reset(): number {
@@ -29,9 +22,8 @@ export class StepAttendeesComponent implements OnInit {
     }
 
     public step = this._fb.group({
-        attendees: this._fb.array([], Validators.minLength(1))
+        attendees: this._fb.array([], minLengthArray(1))
     });
-
 
     @ViewChild('selectNumAttendees') selectNumAttendees: ElementRef;
 
@@ -39,13 +31,11 @@ export class StepAttendeesComponent implements OnInit {
 
     private optionsNumber = 5;
     public optionsList: number[];
-    public attendeesList: FormArray;
 
     constructor(private _fb: FormBuilder) {
     }
 
     ngOnInit() {
-        this.attendeesList = this.getAttendeesFormArray();
         this.fillAttendeesSelect();
     }
 
@@ -57,29 +47,15 @@ export class StepAttendeesComponent implements OnInit {
 
     showAttendeesList(num) {
         const numOfAttendees = +num;
-        this.step.setControl("attendees", this._fb.array([]));
-        /*const a = <FormArray>this.step.controls.attendees;*/
-        if (num > 0) {
-            this.attendeesList = this._fb.array(new Array(numOfAttendees).fill(1).map(elem => new FormControl("", Validators.required)));
-            this.step.setControl("attendees", this.attendeesList);
-            /*new Array(numOfAttendees)
-                .fill(1).forEach( elem => {
-                a.push(new FormControl('', Validators.required));
-            });*/
-
+        this.step.setControl("attendees", this._fb.array([], minLengthArray(1)));
+        const attendees = <FormArray>this.step.controls.attendees;
+        for(let i = 0; i < numOfAttendees; i++){
+            attendees.push(new FormControl('', Validators.required));
         }
-    }
-
-    resetAttendeesList() {
-        this.attendeesList = this._fb.array([]);
     }
 
     resetSelectAttendees(){
         this.selectNumAttendees.nativeElement.value = 0;
-    }
-
-    getAttendeesFormArray() {
-        return <FormArray>this.step.controls.attendees;
     }
 
 }

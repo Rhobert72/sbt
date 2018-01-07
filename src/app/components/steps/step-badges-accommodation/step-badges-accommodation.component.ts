@@ -12,7 +12,6 @@ export class StepBadgesAccommodationComponent implements OnInit {
 
     public step = this._fb.group({
         nameOnBadges: new FormControl('', Validators.required),
-        companyName: new FormControl(''),
         specialAccommodation: new FormControl('', Validators.required)
     });
 
