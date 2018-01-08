@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-step-container',
@@ -11,40 +11,34 @@ export class StepContainerComponent implements OnInit {
     @Input() mainForm: FormGroup;
 
     @Input() step: FormGroup;
+    @Input() stepIndex: number;
 
     @Input() bgcolor: string;
 
-    public stepIndex: number;
     private formSteps: FormArray;
-
     public stepStyle = {};
 
-    constructor(private _fb: FormBuilder) { }
+    constructor() { }
 
     ngOnInit() {
-        this.formSteps = this.getSteps();
-        this.stepIndex = this.formSteps.length;
-        this.formSteps.push(this.step);
-
         this.stepStyle = {
             'background-color': this.bgcolor
         };
+        this.formSteps = <FormArray>this.mainForm.controls.steps;
     }
 
     isDisabled(){
-        return this.stepIndex === 0? false: this.formSteps.at(this.stepIndex - 1).invalid || this.formSteps.at(this.stepIndex - 1).pristine;
-    }
-
-    getSteps(){
-        return <FormArray>this.mainForm.controls.steps;
+        const prevStep = this.formSteps.at(this.stepIndex - 1);
+        return this.stepIndex === 0? false: prevStep.invalid || prevStep.pristine;
     }
 
     isFormValid(){
-        return this.formSteps.at(this.stepIndex).valid;
+        return this.step.valid;
     }
 
     isLastStep(){
-        return this.stepIndex === this.getSteps().length - 1;
+        const steps = <FormArray>this.mainForm.controls.steps
+        return this.stepIndex === steps.length - 1;
     }
 
 }

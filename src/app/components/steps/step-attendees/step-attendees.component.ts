@@ -1,14 +1,13 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {minLengthArray} from '../../../validators/'
+import {StepComponent} from "../step.component";
 @Component({
     selector: "app-step-attendees",
     templateUrl: "./step-attendees.component.html",
     styleUrls: ["./step-attendees.component.css"]
 })
-export class StepAttendeesComponent implements OnInit {
-
-    @Input() mainForm: FormGroup;
+export class StepAttendeesComponent extends StepComponent implements OnInit {
 
     public step = this._fb.group({
         numOfAttendees: new FormControl(null, Validators.min(1)),
@@ -20,11 +19,13 @@ export class StepAttendeesComponent implements OnInit {
     private optionsNumber = 5;
     public optionsList: number[];
 
-    constructor(private _fb: FormBuilder) {
+    constructor(protected _fb: FormBuilder){
+        super(_fb);
     }
 
     ngOnInit() {
         this.fillAttendeesSelect();
+        super.ngOnInit();
     }
 
     fillAttendeesSelect() {

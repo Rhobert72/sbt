@@ -10,4 +10,8 @@
     <app-alert-valid-step [stepStatus]="isFormValid()"></app-alert-valid-step>
   </ng-container>
 
+  <ng-container *ngIf="isLastStep()">
+    <input type="submit" value="Complete Registration" [disabled]="mainForm.invalid">
+  </ng-container>
+
 </fieldset>

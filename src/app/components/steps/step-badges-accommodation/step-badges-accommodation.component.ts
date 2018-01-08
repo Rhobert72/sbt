@@ -1,14 +1,13 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {StepComponent} from "../step.component";
 
 @Component({
   selector: 'app-step-badges-accommodation',
   templateUrl: './step-badges-accommodation.component.html',
   styleUrls: ['./step-badges-accommodation.component.css']
 })
-export class StepBadgesAccommodationComponent {
-
-    @Input() mainForm: FormGroup;
+export class StepBadgesAccommodationComponent extends StepComponent {
 
     public step = this._fb.group({
         nameOnBadges: new FormControl('', Validators.required),
@@ -17,7 +16,9 @@ export class StepBadgesAccommodationComponent {
 
     public stepBackgroundColor = '#b6e4fb';
 
-    constructor(private _fb: FormBuilder) {}
+    constructor(protected _fb: FormBuilder){
+        super(_fb);
+    }
 
     onChangeBadges(flag){
         if(flag === 'yes'){

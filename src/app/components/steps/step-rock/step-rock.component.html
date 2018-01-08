@@ -1,4 +1,8 @@
-<app-step-container [mainForm]="mainForm" [step]="step" [bgcolor]="stepBackgroundColor">
+<app-step-container
+        [mainForm]="mainForm"
+        [step]="step"
+        [stepIndex]="stepIndex"
+        [bgcolor]="stepBackgroundColor">
   <div [formGroup]="step">
     <p>
       Are you ready to rock? <input type="checkbox" formControlName="youRock" (change)="onChange($event.target.checked)">

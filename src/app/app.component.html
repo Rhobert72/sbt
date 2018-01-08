@@ -3,16 +3,23 @@
   <div class="wrapper">
 
     <div class="box">
-      <app-step-attendees [mainForm]="mainForm"></app-step-attendees>
+      <app-step-attendees
+              [mainForm]="mainForm"
+              (registerStep)="onRegisterStep($event)"
+      ></app-step-attendees>
     </div>
 
     <div class="box">
-      <app-step-badges-accommodation [mainForm]="mainForm"></app-step-badges-accommodation>
+      <app-step-badges-accommodation
+              [mainForm]="mainForm"
+              (registerStep)="onRegisterStep($event)"
+      ></app-step-badges-accommodation>
     </div>
 
     <div class="box">
-      <app-step-rock [mainForm]="mainForm">
-        <input type="submit" value="Complete Registration" [disabled]="mainForm.invalid">
+      <app-step-rock
+              [mainForm]="mainForm"
+              (registerStep)="onRegisterStep($event)">
       </app-step-rock>
     </div>
 

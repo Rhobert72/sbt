@@ -1,4 +1,8 @@
-<app-step-container [mainForm]="mainForm" [step]="step" [bgcolor]="stepBackgroundColor">
+<app-step-container
+     [mainForm]="mainForm"
+        [step]="step"
+        [stepIndex]="stepIndex"
+        [bgcolor]="stepBackgroundColor">
   <div [formGroup]="step">
 
     <p>How many people will be attending?<br>
