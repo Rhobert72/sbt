@@ -37,8 +37,7 @@ export class StepContainerComponent implements OnInit {
     }
 
     isLastStep(){
-        const steps = <FormArray>this.mainForm.controls.steps
-        return this.stepIndex === steps.length - 1;
+        return this.stepIndex === this.formSteps.length - 1;
     }
 
 }
