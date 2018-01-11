@@ -28,8 +28,7 @@ export class StepContainerComponent implements OnInit {
     }
 
     isDisabled(){
-        const prevStep = this.formSteps.at(this.stepIndex - 1);
-        return this.stepIndex === 0? false: prevStep.invalid || prevStep.pristine;
+        return !this.arePrevStepsValid();
     }
 
     isFormValid(){
@@ -38,6 +37,16 @@ export class StepContainerComponent implements OnInit {
 
     isLastStep(){
         return this.stepIndex === this.formSteps.length - 1;
+    }
+
+    arePrevStepsValid(){
+        let valid = true;
+        let currStep: AbstractControl;
+        for(let i = 0; i < this.stepIndex; i++) {
+            currStep = this.formSteps.at(i);
+            valid = valid && (currStep.valid);
+        }
+        return valid;
     }
 
 }
